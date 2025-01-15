@@ -14,3 +14,19 @@ public class DemoController {
         return ResponseEntity.ok("Hello from secured endpoint");
     }
 }
+
+// Done - Useru da dodam da bude:
+// Done - User (id, firstName, lastName, username, email, createdBy, createdAt, modifiedBy, modifiedAt)
+// Done - Kada se kreira korisnik da validiramo polja za unos novih korisnika
+// Done - minimalna duzina username, regex za email
+// Done - Admin moze da kreira korisnike (proveri da li radi)
+// Admin moze da vidi listu svih korisnika (UserResponse: id, username, role, createdBy, createdAt, modifiedBy, modifiedAt)
+// Za User tabelu da dodam liquibase da imam na umu auditing kod entiteta
+// da bacim pogled na https://medium.com/thefreshwrites/jpa-auditing-spring-boot-spring-security-575c77867570
+
+// Dodavanje Swaggera
+// Pisanje Junit testova za usere
+
+// Da razdvojim layere, da imamo controllere, repository, domain i service
+// Logovanje: https://www.geeksforgeeks.org/spring-boot-logging/. Za sada mozes najjednostavniji nacin da dodas preko lomboka
+// Endpoint za dodavanje novih korisnika sa invite email-om (email sending + thymeleaf)
