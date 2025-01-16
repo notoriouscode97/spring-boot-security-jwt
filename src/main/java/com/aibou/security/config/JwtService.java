@@ -1,5 +1,6 @@
 package com.aibou.security.config;
 
+import com.aibou.security.security.CustomUserDetails;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
@@ -37,10 +38,6 @@ public class JwtService {
             Map<String, Object> extractClaims,
             UserDetails userDetails
     ) {
-        extractClaims.put("roles", userDetails.getAuthorities().stream()
-                .map(GrantedAuthority::getAuthority)
-                .collect(Collectors.toList()));
-
         return Jwts.builder()
                 .claims(extractClaims)
                 .subject(userDetails.getUsername())
@@ -50,7 +47,7 @@ public class JwtService {
                 .compact();
     }
 
-    public boolean isTokenValid(String token, UserDetails userDetails) {
+    public boolean isTokenValid(String token, CustomUserDetails userDetails) {
         final String username = extractUsername(token);
         return (username.equals(userDetails.getUsername())) && !isTokenExpired(token);
     }

@@ -17,7 +17,7 @@ public class UserService {
 
     public Optional<User> getUserByEmail(String email) {
         //GET USER BY EMAIL tuki user Optional.empty
-        System.out.println("GET USER BY EMAIL " + email + " user " + userRepository.findByEmail(email));
+//        System.out.println("GET USER BY EMAIL " + email + " user " + userRepository.findByEmail(email));
         return userRepository.findByEmail(email);
     }
 
