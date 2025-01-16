@@ -16,10 +16,8 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        var user = userService.getUserByEmail(username).map(CustomUserDetails::new);
-        if (user.isEmpty()) {
-            throw new UsernameNotFoundException(username);
-        }
-        return user.get();
+        return userService.getUserByEmail(username)
+                .map(CustomUserDetails::new)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
 }
