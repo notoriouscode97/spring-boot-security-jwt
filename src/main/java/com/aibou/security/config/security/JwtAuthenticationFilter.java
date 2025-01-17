@@ -34,52 +34,32 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             @NonNull HttpServletResponse response,
             @NonNull FilterChain filterChain
     ) throws ServletException, IOException {
-        if (!isTokenPresent(request)) {
+        final String authHeader = request.getHeader("Authorization");
+        final String jwt;
+        final String username;
+
+        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
             filterChain.doFilter(request, response);
+            return;
         }
 
-        final String jwt = extractToken(request);
-        final String username = jwtService.extractUsername(jwt);
-
-        if (shouldAuthenticate(username)) {
-            authenticateUser(request, jwt, username);
+        jwt = authHeader.substring(7);
+        username = jwtService.extractUsername(jwt);
+        if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+           CustomUserDetails userDetails = new CustomUserDetails(userService.getUserByUsername(username)
+                   .orElseThrow(() -> new UsernameNotFoundException("User not found")));
+            if (jwtService.isTokenValid(jwt, userDetails)) {
+                UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
+                        userDetails,
+                        null,
+                        userDetails.getAuthorities()
+                );
+                authToken.setDetails(
+                   new WebAuthenticationDetailsSource().buildDetails(request)
+                );
+                SecurityContextHolder.getContext().setAuthentication(authToken);
+            }
         }
-
         filterChain.doFilter(request, response);
-    }
-
-    private boolean isTokenPresent(HttpServletRequest request) {
-        String authHeader = request.getHeader("Authorization");
-        return authHeader != null && authHeader.startsWith("Bearer ");
-    }
-
-    private String extractToken(HttpServletRequest request) {
-        String authHeader = request.getHeader("Authorization");
-        return authHeader.substring(7);
-    }
-
-    private boolean shouldAuthenticate(String username) {
-        return username != null && SecurityContextHolder.getContext().getAuthentication() == null;
-    }
-
-    private void authenticateUser(HttpServletRequest request, String jwt, String username) {
-        CustomUserDetails userDetails = loadUserDetails(username);
-
-        if (jwtService.isTokenValid(jwt, userDetails)) {
-            UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
-                    userDetails,
-                    null,
-                    userDetails.getAuthorities()
-            );
-            authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-            SecurityContextHolder.getContext().setAuthentication(authToken);
-        }
-    }
-
-    private CustomUserDetails loadUserDetails(String username) {
-        return new CustomUserDetails(
-                userService.getUserByUsername(username)
-                        .orElseThrow(() -> new UsernameNotFoundException("User not found"))
-        );
     }
 }

@@ -21,10 +21,11 @@ public class DemoController {
 // Done - minimalna duzina username, regex za email
 // Done - Admin moze da kreira korisnike (proveri da li radi)
 // Done - Da razdvojim layere, da imamo controllere, repository, domain i service
+// Done - da imam na umu auditing kod entiteta
+// Done - da bacim pogled na https://medium.com/thefreshwrites/jpa-auditing-spring-boot-spring-security-575c77867570
 
 // Admin moze da vidi listu svih korisnika (UserResponse: id, username, role, createdBy, createdAt, modifiedBy, modifiedAt)
-// Za User tabelu da dodam liquibase da imam na umu auditing kod entiteta
-// da bacim pogled na https://medium.com/thefreshwrites/jpa-auditing-spring-boot-spring-security-575c77867570
+// Za User tabelu da dodam liquibase
 
 // Dodavanje Swaggera
 // Pisanje Junit testova za usere
