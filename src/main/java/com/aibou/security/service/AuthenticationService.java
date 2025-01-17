@@ -22,7 +22,7 @@ public class AuthenticationService {
     private final UserMapper userMapper;
 
     public UserResponse register(RegisterRequest request) {
-        var user = repository.save(userMapper.toUser(request));
+        var user = repository.save(userMapper.toUser(request, passwordEncoder));
         return userMapper.toUserResponse(user);
     }
 

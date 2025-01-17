@@ -23,8 +23,7 @@ public class DemoController {
 // Done - Da razdvojim layere, da imamo controllere, repository, domain i service
 // Done - da imam na umu auditing kod entiteta
 // Done - da bacim pogled na https://medium.com/thefreshwrites/jpa-auditing-spring-boot-spring-security-575c77867570
-
-// Admin moze da vidi listu svih korisnika (UserResponse: id, username, role, createdBy, createdAt, modifiedBy, modifiedAt)
+// Done - Admin moze da vidi listu svih korisnika (UserResponse: id, username, role, createdBy, createdAt, modifiedBy, modifiedAt)
 // Za User tabelu da dodam liquibase
 
 // Dodavanje Swaggera
