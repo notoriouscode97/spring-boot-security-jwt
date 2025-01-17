@@ -1,8 +1,13 @@
-package com.aibou.security.auth;
+package com.aibou.security.service;
 
-import com.aibou.security.config.JwtService;
-import com.aibou.security.security.CustomUserDetailsService;
-import com.aibou.security.user.*;
+import com.aibou.security.dto.AuthenticationRequest;
+import com.aibou.security.dto.AuthenticationResponse;
+import com.aibou.security.dto.RegisterRequest;
+import com.aibou.security.config.security.JwtService;
+import com.aibou.security.domain.Role;
+import com.aibou.security.domain.User;
+import com.aibou.security.repository.UserRepository;
+import com.aibou.security.config.security.CustomUserDetailsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -23,6 +28,7 @@ public class AuthenticationService {
         var user = User.builder()
                 .firstName(request.getFirstName())
                 .lastName(request.getLastName())
+                .username(request.getUsername())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .role(Role.USER)

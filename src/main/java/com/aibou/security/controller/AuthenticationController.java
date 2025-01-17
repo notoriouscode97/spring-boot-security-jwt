@@ -1,6 +1,10 @@
-package com.aibou.security.auth;
+package com.aibou.security.controller;
 
-import com.aibou.security.user.User;
+import com.aibou.security.dto.AuthenticationRequest;
+import com.aibou.security.dto.AuthenticationResponse;
+import com.aibou.security.service.AuthenticationService;
+import com.aibou.security.dto.RegisterRequest;
+import com.aibou.security.domain.User;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +26,6 @@ public class AuthenticationController {
     }
 
     @PostMapping("/register")
-    // TODO: - Check if it should be ROLE_ADMIN or just ADMIN
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<User> register(
              @Valid @RequestBody RegisterRequest request

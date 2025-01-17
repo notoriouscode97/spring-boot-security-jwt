@@ -1,7 +1,7 @@
 package com.aibou.security.config;
 
-import com.aibou.security.security.CustomUserDetailsService;
-import com.aibou.security.user.UserService;
+import com.aibou.security.config.security.CustomUserDetailsService;
+import com.aibou.security.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

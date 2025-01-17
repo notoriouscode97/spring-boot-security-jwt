@@ -1,4 +1,4 @@
-package com.aibou.security.auth;
+package com.aibou.security.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

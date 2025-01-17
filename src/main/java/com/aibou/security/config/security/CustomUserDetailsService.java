@@ -1,6 +1,6 @@
-package com.aibou.security.security;
+package com.aibou.security.config.security;
 
-import com.aibou.security.user.UserService;
+import com.aibou.security.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetailsService;

@@ -1,6 +1,7 @@
-package com.aibou.security.user;
+package com.aibou.security.repository;
 
 
+import com.aibou.security.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

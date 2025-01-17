@@ -1,6 +1,6 @@
-package com.aibou.security.security;
+package com.aibou.security.config.security;
 
-import com.aibou.security.user.User;
+import com.aibou.security.domain.User;
 import lombok.Builder;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;

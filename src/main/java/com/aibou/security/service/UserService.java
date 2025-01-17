@@ -1,5 +1,7 @@
-package com.aibou.security.user;
+package com.aibou.security.service;
 
+import com.aibou.security.domain.User;
+import com.aibou.security.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,8 +18,6 @@ public class UserService {
     }
 
     public Optional<User> getUserByEmail(String email) {
-        //GET USER BY EMAIL tuki user Optional.empty
-//        System.out.println("GET USER BY EMAIL " + email + " user " + userRepository.findByEmail(email));
         return userRepository.findByEmail(email);
     }
 

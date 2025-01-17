@@ -13,3 +13,8 @@ spring:
         format_sql: true
     database: postgresql
     database-platform: org.hibernate.dialect.PostgreSQLDialect
+#logging:
+#  level:
+#    # This will show the whole request filter (middleware) chain it will make it easier to debug
+#    # don't use on production
+#    org.springframework.security = TRACE

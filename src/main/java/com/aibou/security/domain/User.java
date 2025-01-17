@@ -1,4 +1,4 @@
-package com.aibou.security.user;
+package com.aibou.security.domain;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
