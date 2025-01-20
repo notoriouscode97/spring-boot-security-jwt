@@ -6,6 +6,9 @@ import com.aibou.security.dto.UserResponse;
 import com.aibou.security.service.AuthenticationService;
 import com.aibou.security.dto.RegisterRequest;
 import com.aibou.security.domain.User;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +26,8 @@ public class AuthenticationController {
         this.authService = authService;
     }
 
+    @Operation(summary = "Create a new User", description = "Returns created user")
+    @ApiResponse(responseCode = "201", description = "User created successfully")
     @PostMapping("/register")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<UserResponse> register(
@@ -31,6 +36,11 @@ public class AuthenticationController {
         return ResponseEntity.ok(authService.register(request));
     }
 
+    @Operation(summary = "Login", description = "Returns token")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Login successful"),
+            @ApiResponse(responseCode = "403", description = "Bad credentials")
+    })
     @PostMapping("/authenticate")
     public ResponseEntity<AuthenticationResponse> authenticate(
             @RequestBody AuthenticationRequest request

@@ -29,6 +29,7 @@ public class SecurityConfiguration {
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/v1/auth/**").permitAll() // Public endpoints
+                        .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll() // Add endpoint
                         .anyRequest().authenticated() // Secure all other endpoints
                 )
                 .userDetailsService(userDetailsService)
