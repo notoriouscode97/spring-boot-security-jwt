@@ -1,5 +1,6 @@
 package com.aibou.security.dto;
 
+import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,7 +17,7 @@ public class UserResponse {
     private String username;
     private String role;
     private String createdBy;
-    private Date createdAt;
-    private String modifiedBy;
-    private Date modifiedAt;
+    private Date createdDate;
+    private String lastModifiedBy;
+    private Date lastModifiedDate;
 }

@@ -1,11 +1,10 @@
 package com.aibou.security.domain;
 
+import com.aibou.security.config.security.Auditable;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -14,13 +13,14 @@ import org.springframework.data.annotation.LastModifiedDate;
 import java.util.Date;
 
 @Data
-@Builder
+@EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
+@SuperBuilder
 @Entity
 @Table(name = "_user")
 @Schema(description = "User entity")
-public class User {
+public class User extends Auditable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Schema(description = "Unique Identifier of the User", example = "1")
@@ -34,18 +34,6 @@ public class User {
     @Schema(description = "Email of the User", example = "johndoe@gmail.com")
     private String email;
     private String password;
-    @CreatedBy
-    @Column(updatable = false)
-    private String createdBy;
-    @CreatedDate
-    @Column(updatable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createdAt;
-    @LastModifiedBy
-    private String modifiedBy;
-    @LastModifiedDate
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date modifiedAt;
 
     @Enumerated(EnumType.STRING)
     private Role role;
