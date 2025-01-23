@@ -5,7 +5,6 @@ import com.aibou.security.dto.AuthenticationResponse;
 import com.aibou.security.dto.UserResponse;
 import com.aibou.security.service.AuthenticationService;
 import com.aibou.security.dto.RegisterRequest;
-import com.aibou.security.domain.User;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
