@@ -15,6 +15,9 @@ spring:
         format_sql: true
     database: postgresql
     database-platform: org.hibernate.dialect.PostgreSQLDialect
+  liquibase:
+    change-log: classpath:/db.changelog/app-changelog.xml
+    default-schema: public
 #logging:
 #  level:
 #    # This will show the whole request filter (middleware) chain it will make it easier to debug

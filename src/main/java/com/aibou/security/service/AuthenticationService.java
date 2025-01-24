@@ -5,6 +5,7 @@ import com.aibou.security.config.security.JwtService;
 import com.aibou.security.repository.UserRepository;
 import com.aibou.security.config.security.CustomUserDetailsService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class AuthenticationService {
 
     private final UserRepository repository;
@@ -23,6 +25,7 @@ public class AuthenticationService {
 
     public UserResponse register(RegisterRequest request) {
         var user = repository.save(userMapper.toUser(request, passwordEncoder));
+        log.info("Created user: {}", user);
         return userMapper.toUserResponse(user);
     }
 
@@ -33,7 +36,7 @@ public class AuthenticationService {
                         request.getPassword()
                 )
         );
-        System.out.printf("Authentication Successful: %s\n", request.getEmail());
+        log.info("Authentication successful for user: {}", request.getEmail());
         var user = userDetailsService.loadUserByUsername(request.getEmail());
         var jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder()

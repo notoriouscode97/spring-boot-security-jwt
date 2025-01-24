@@ -25,8 +25,8 @@ public class DemoController {
 // Done - da bacim pogled na https://medium.com/thefreshwrites/jpa-auditing-spring-boot-spring-security-575c77867570
 // Done - Admin moze da vidi listu svih korisnika (UserResponse: id, username, role, createdBy, createdAt, modifiedBy, modifiedAt)
 // Done - Dodavanje Swaggera
+// Done - Logovanje: https://www.geeksforgeeks.org/spring-boot-logging/. Za sada mozes najjednostavniji nacin da dodas preko lomboka
+// Done - Pisanje Junit testova za usere // Dodacemo i Servise
 
 // Za User tabelu da dodam liquibase
-// Pisanje Junit testova za usere
-// Logovanje: https://www.geeksforgeeks.org/spring-boot-logging/. Za sada mozes najjednostavniji nacin da dodas preko lomboka
 // Endpoint za dodavanje novih korisnika sa invite email-om (email sending + thymeleaf)

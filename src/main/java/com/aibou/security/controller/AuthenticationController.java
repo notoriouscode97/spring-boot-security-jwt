@@ -9,11 +9,13 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+@Slf4j
 @RestController
 @RequestMapping("/api/v1/auth")
 public class AuthenticationController {
@@ -32,7 +34,10 @@ public class AuthenticationController {
     public ResponseEntity<UserResponse> register(
              @Valid @RequestBody RegisterRequest request
     ) {
-        return ResponseEntity.ok(authService.register(request));
+        log.info("Received register request: {}", request);
+        var response = authService.register(request);
+        log.info("Returning register response: {}", response);
+        return ResponseEntity.ok(response);
     }
 
     @Operation(summary = "Login", description = "Returns token")
@@ -44,6 +49,9 @@ public class AuthenticationController {
     public ResponseEntity<AuthenticationResponse> authenticate(
             @RequestBody AuthenticationRequest request
     ) {
-        return ResponseEntity.ok(authService.authenticate(request));
+        log.info("Received authentication request: {}", request);
+        var response = authService.authenticate(request);
+        log.info("Return authentication response: {}", response);
+        return ResponseEntity.ok(response);
     }
 }

@@ -1,0 +1,31 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+<changeSet id="2" author="yourname">
+    <insert tableName="_user">
+        <column name="created_by" value=""/>
+        <column name="created_date" valueComputed="CURRENT_TIMESTAMP"/>
+        <column name="last_modified_by" value=""/>
+        <column name="last_modified_date" valueComputed="CURRENT_TIMESTAMP"/>
+        <column name="email" value="liquibaseUser1@gmail.com"/>
+        <column name="first_name" value="lbUser1"/>
+        <column name="last_name" value="lbUserLastName1"/>
+        <column name="password" value="$2a$10$HYW6lqsWRiQ7hIFUSwZqTOIDygPFHTxQq52S7lV5S.15GBrlfE972"/>
+        <column name="role" value="USER"/>
+        <column name="username" value="lbUser1"/>
+    </insert>
+    <insert tableName="_user">
+        <column name="created_by" value=""/>
+        <column name="created_date" valueComputed="CURRENT_TIMESTAMP"/>
+        <column name="last_modified_by" value=""/>
+        <column name="last_modified_date" valueComputed="CURRENT_TIMESTAMP"/>
+        <column name="email" value="liquibaseUser2@gmail.com"/>
+        <column name="first_name" value="lbUser2"/>
+        <column name="last_name" value="lbUserLastName2"/>
+        <column name="password" value="$2a$10$HYW6lqsWRiQ7hIFUSwZqTOIDygPFHTxQq52S7lV5S.15GBrlfE972"/>
+        <column name="role" value="USER"/>
+        <column name="username" value="lbUser2"/>
+    </insert>
+</changeSet>
+</databaseChangeLog>

@@ -6,6 +6,7 @@ import com.aibou.security.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequestMapping("/api/v1")
 public class UserController {
@@ -32,6 +34,9 @@ public class UserController {
     })
     @GetMapping("/users")
     public ResponseEntity<List<UserResponse>> getUsers() {
-        return ResponseEntity.ok(userService.getUsers());
+        log.info("Received request to get all users");
+        var response = userService.getUsers();
+        log.info("Returning list of users: {}", response);
+        return ResponseEntity.ok(response);
     }
 }
